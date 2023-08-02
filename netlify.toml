@@ -1,0 +1,46 @@
+[build]
+  command = "npm run build" # Replace this with your build command if necessary, or leave it empty if you don't have a build process
+
+[build.environment]
+  # Add any environment variables your build process requires, if applicable
+  # For example:
+  # VARIABLE_NAME = "VALUE"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Set headers for your site's assets to improve caching and security
+  # Example headers for images, stylesheets, and fonts:
+  # For more information: https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-toml-file
+
+  [headers."/*.jpg"]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  [headers."/*.png"]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  [headers."/*.ico"]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  [headers."/*.css"]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+  # You can add more headers for other types of assets if necessary.
+
+[[headers]]
+  # Set Content Security Policy (CSP) header for security
+  # Replace 'example.com' with your actual domain or remove this section if not needed
+  # For more information: https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-toml-file
+
+  [headers.'/*']
+    Content-Security-Policy = "default-src 'self'; img-src 'self' example.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+
+[[headers]]
+  # Set X-Frame-Options header to prevent clickjacking
+  # For more information: https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-toml-file
+
+  [headers.'/*']
+    X-Frame-Options = "DENY"
